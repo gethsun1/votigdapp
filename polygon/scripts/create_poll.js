@@ -7,8 +7,8 @@ async function create_poll() {
   const VotingDapp = await ethers.getContractFactory("VotingDapp");
   const votingDapp = await VotingDapp.attach(votingDappAddress);
 
-  const pollTitle = "Should we have a pizza party?";
-  const pollDescription = "Vote for your favorite pizza toppings!";
+  const pollTitle = "Euro Trip or not?";
+  const pollDescription = "Vote for Your Choice!";
   const pollDuration = 60 * 60 * 24; // 24 hours in seconds
 
   const tx = await votingDapp.createPoll(pollTitle, pollDescription, pollDuration);

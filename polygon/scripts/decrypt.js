@@ -8,9 +8,9 @@ const {
 
 async function queryVotes(proposalId) {
   const contractAddress = process.env.CONTRACT_ADDRESS;
-  const contractName = "PrivateVoting"; // Replace with your contract's name
+  const contractName = "VotingDapp"; // Replace with your contract's name
 
-  const ContractJson = require("../artifacts/contracts/PrivateVoting.sol/PrivateVoting.json");
+  const ContractJson = require("../artifacts/contracts/VotingDapp.sol/VotingDapp.json");
   const abi = ContractJson.abi;
 
   // Setup provider and contract

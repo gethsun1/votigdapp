@@ -30,7 +30,7 @@ async function vote(pollId, voteOption) {
   console.log("Vote cast successfully!");
 }
 
-const pollId = 0; // Replace with the actual poll ID
+const pollId = 3; // Replace with the actual poll ID
 const voteOption = "yes"; // Replace with "yes" or "no" depending on your choice
 
 vote(pollId, voteOption);

@@ -19,6 +19,6 @@ async function query_poll(pollId) {
   console.log(`No Votes: ${poll.noVotes}`);
 }
 
-const pollId = 0; // Replace with the actual ID of the poll you created
+const pollId = 3; // Replace with the actual ID of the poll you created
 
 query_poll(pollId);

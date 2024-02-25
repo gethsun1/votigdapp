@@ -26,6 +26,10 @@ contract VotingDapp {
         return pollIdCounter;
     }
 
+    function getPollsCount() external view returns (uint256) {
+        return pollIdCounter;
+    }
+
     // Struct to represent a poll
     struct Poll {
         uint256 id;
@@ -68,6 +72,51 @@ contract VotingDapp {
         emit PollCreated(pollId, _title, _description, _duration);
 
     }
+
+
+    function getYesVotes(uint256 _pollId) external view returns (uint256) {
+    require(_pollId <= pollIdCounter, "Poll does not exist");
+    
+    return polls[_pollId].yesVotes;
+}
+
+    
+    
+    function getNoVotes(uint256 _pollId) external view returns (uint256) {
+        require(_pollId <= pollIdCounter, "Poll does not exist");
+        
+        return polls[_pollId].noVotes;
+    }
+    
+    
+    
+
+
+    function getPollDetails(uint256 _pollId) external view returns (
+    string memory title,
+    string memory description,
+    uint256 startTime,
+    uint256 duration,
+    uint256 yesVotes,
+    uint256 noVotes,
+    bool isActive
+) {
+    require(_pollId <= pollIdCounter, "Poll does not exist");
+
+    Poll storage poll = polls[_pollId];
+
+    return (
+        poll.title,
+        poll.description,
+        poll.startTime,
+        poll.duration,
+        poll.yesVotes,
+        poll.noVotes,
+        poll.isActive
+    );
+}
+
+
 
     function vote(uint256 _pollId, string memory _voteOption) external onlyActivePoll(_pollId) {
   require(!polls[_pollId].voters[msg.sender], "You have already voted in this poll"); // Check if user already voted
