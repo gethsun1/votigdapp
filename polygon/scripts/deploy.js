@@ -1,15 +1,17 @@
 const hre = require("hardhat");
 
 async function main() {
-  let VotingDappFactory = await hre.ethers.getContractFactory("VotingDapp");
-  let votingDapp = await VotingDappFactory.deploy();
+  const VotingDappFactory = await hre.ethers.getContractFactory("VotingDapp");
+  const votingDapp = await VotingDappFactory.deploy();
 
-  console.log("VotingDapp deployed to: ", votingDapp.address);
+  await votingDapp.deployed();
+
+  console.log("VotingDapp deployed to:", votingDapp.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

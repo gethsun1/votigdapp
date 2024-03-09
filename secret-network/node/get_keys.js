@@ -16,16 +16,38 @@ let contractCodeHash = process.env.CODE_HASH;
 let contractAddress = process.env.SECRET_ADDRESS;
 
 let get_keys = async () => {
-  let query = await secretjs.query.compute.queryContract({
-    contract_address: contractAddress,
-    query: {
-      get_keys: {},
-    },
-    code_hash: contractCodeHash,
-  });
-  const publicKeyString = query.public_key.join(",");
-  console.log(publicKeyString);
-  // console.log(query);
+  try {
+    let query = await secretjs.query.compute.queryContract({
+      contract_address: contractAddress,
+      query: {
+        get_keys: {},
+      },
+      code_hash: contractCodeHash,
+    });
+
+    if (query && query.public_key) {
+      const publicKeyString = query.public_key.join(",");
+      console.log(publicKeyString);
+    } else {
+      console.error("Public key not found in the query result.");
+    }
+
+  } catch (error) {
+    console.error("Error querying the contract:", error.message);
+  }
 };
 
 get_keys();
+
+
+
+
+
+
+
+
+
+
+
+
+

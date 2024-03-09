@@ -1,7 +1,30 @@
+// scripts/vote.js
 const { ethers } = require("hardhat");
 require("dotenv").config();
 
-async function vote(pollId, voteOption) {
+
+
+async function getCandidates(pollId) {
+  const votingDappAddress = process.env.CONTRACT_ADDRESS; // Replace with your deployed contract's address
+
+  const VotingDapp = await ethers.getContractFactory("VotingDapp");
+  const votingDapp = await VotingDapp.attach(votingDappAddress);
+
+  const poll = await votingDapp.polls(pollId);
+
+  // Check if candidates mapping exists in the poll
+  if (!poll.candidates) {
+    console.error("Candidates mapping not found in the poll!");
+    return [];
+  }
+
+  return Object.keys(poll.candidates);
+}
+
+
+
+
+async function vote(pollId, candidateName) {
   const votingDappAddress = process.env.CONTRACT_ADDRESS; // Replace with your deployed contract's address
 
   const VotingDapp = await ethers.getContractFactory("VotingDapp");
@@ -14,15 +37,17 @@ async function vote(pollId, voteOption) {
     return;
   }
 
-  // Validate vote option (e.g., "yes" or "no")
-  const validOptions = ["yes", "no"];
-  if (!validOptions.includes(voteOption)) {
-    console.error("Invalid vote option!");
+  // Retrieve candidates for the poll
+  const validCandidates = await getCandidates(pollId);
+
+  // Validate candidate name
+  if (!validCandidates.includes(candidateName)) {
+    console.error("Invalid candidate name!");
     return;
   }
 
   // Cast the vote
-  const tx = await votingDapp.vote(pollId, voteOption);
+  const tx = await votingDapp.vote(pollId, candidateName);
 
   console.log(`Transaction hash: ${tx.hash}`);
   await tx.wait();
@@ -30,7 +55,7 @@ async function vote(pollId, voteOption) {
   console.log("Vote cast successfully!");
 }
 
-const pollId = 3; // Replace with the actual poll ID
-const voteOption = "yes"; // Replace with "yes" or "no" depending on your choice
+const pollId = 0; // Replace with the actual poll ID
+const candidateName = "Candidate2"; // Replace with the actual candidate name
 
-vote(pollId, voteOption);
+vote(pollId, candidateName);

@@ -1,24 +1,52 @@
 const { ethers } = require("hardhat");
 require("dotenv").config();
 
-async function query_poll(pollId) {
-  const votingDappAddress = process.env.CONTRACT_ADDRESS; // Replace with your deployed contract's address
+async function queryPollDetails() {
+  const votingDappAddress = process.env.CONTRACT_ADDRESS;
 
-  const VotingDapp = await ethers.getContractFactory("VotingDapp");
-  const votingDapp = await VotingDapp.attach(votingDappAddress);
+  if (!votingDappAddress) {
+    console.error("Contract address not provided. Please set CONTRACT_ADDRESS in your environment variables.");
+    return;
+  }
 
-  const poll = await votingDapp.polls(pollId);
+  try {
+    const VotingDapp = await ethers.getContractFactory("VotingDapp");
+    const votingDapp = await VotingDapp.attach(votingDappAddress);
 
-  console.log(`Poll ID: ${poll.id}`);
-  console.log(`Title: ${poll.title}`);
-  console.log(`Description: ${poll.description}`);
-  console.log(`Start Time: ${new Date(poll.startTime * 1000)}`); // Convert timestamp to human-readable date
-  console.log(`Duration: ${poll.duration} seconds`);
-  console.log(`Is Active: ${poll.isActive}`);
-  console.log(`Yes Votes: ${poll.yesVotes}`);
-  console.log(`No Votes: ${poll.noVotes}`);
+    // Get the total number of polls
+    const pollsCount = await votingDapp.getPollsCount();
+    console.log(`Total number of polls: ${pollsCount}`);
+
+    for (let i = 1; i <= pollsCount; i++) {
+      try {
+        const [
+          title,
+          description,
+          startTime,
+          duration,
+          candidateNames,
+          candidateImages,
+          partyNames,
+          partySymbols,
+        ] = await votingDapp.getPollDetails(i);
+  
+        console.log(`\nPoll ${i} Details:`);
+        console.log(`Title: ${title}`);
+        console.log(`Description: ${description}`);
+        console.log(`Start Time: ${new Date(startTime * 1000).toLocaleString()}`);
+        console.log(`Duration: ${duration} seconds`);
+  
+        console.log("\nCandidates:");
+        for (let j = 0; j < candidateNames.length; j++) {
+          console.log(`  ${j + 1}. ${candidateNames[j]} (${partyNames[j]} - ${partySymbols[j]})`);
+        }
+      } catch (error) {
+        console.error(`Error retrieving details for Poll ${i}:`, error);
+      }
+    }
+  } catch (error) {
+    console.error("Error querying poll details:", error);
+  }
 }
 
-const pollId = 3; // Replace with the actual ID of the poll you created
-
-query_poll(pollId);
+queryPollDetails();
