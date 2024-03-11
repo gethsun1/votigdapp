@@ -1,0 +1,3 @@
+[submodule "voting-dapp-ui"]
+	path = voting-dapp-ui
+	url = https://github.com/gethsun1/votigdapp.git
