@@ -19,9 +19,9 @@ async function createPoll() {
 
     // Candidate details
     const candidateNames = ["Candidate1", "Candidate2", "Candidate3", "Candidate4"];
-    const candidateImages = ["ipfs://image1", "ipfs://image2", "ipfs://image3", "ipfs://image4"];
+    const candidateImages = ["QmWyYouwMk3T5NJkweiYYcqKhAs1qbZdC3fCx2WRJFHujw", "QmQezp2vYHyDXiVsdbfpJ5APbYRQ4hSib2HDi9NZhpRis1", "QmV2sXnjHTxvj8Zx9vA3FS1APNXkmg5Gx8Epj3WU1fANJS", "QmPAA2mqmmUqvbvqoisseSr9TXa8vpPmztxGTVbLe3NYcu"];
     const partyNames = ["PartyA", "PartyB", "PartyC", "PartyD"];
-    const partySymbols = ["SymbolA", "SymbolB", "SymbolC", "SymbolD"];
+    const partySymbols = ["QmenoA2URRRAmTVL4T9s7dMexETcJxH8dWbAntfHbJ24C6", "QmcQiWu1rPEgM3m3d8x77jisfvuUGcDoTBkGGAzph9ut8J", "QmSuJxaMWDnGucN4jxZQih86Dxhoz8q9SWMP1MsiraDyzm", "QmWHufdWuF8QtYu2AddEMYuS7T8ixR47bULa7W79bMLFnv"];
 
     // Update positions array to have only one position - "President"
     
