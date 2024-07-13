@@ -2,8 +2,8 @@
 # SovereignCast: Secure, Transparent, and Accessible Cross-Chain Voting
 
 ---
+[![Screenshot-20240713-144334.png](https://i.postimg.cc/hjvCgMrS/Screenshot-20240713-144334.png)](https://postimg.cc/vgR7trkj)
 
-![SovereignCast Logo](logo.png)
 
 ## Vision
 SovereignCast aims to revolutionize elections in Africa and beyond by providing a secure, transparent, and accessible cross-chain voting system powered by Secret Network's blockchain technology.
