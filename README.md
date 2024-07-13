@@ -56,7 +56,7 @@ Votes are encrypted and securely stored, ensuring voter anonymity and protection
    ```
 2. **Install Dependencies**:
    ```bash
-   cd sovereigncast
+   cd votingdapp
    npm install
    ```
 3. **Run the DApp**:
