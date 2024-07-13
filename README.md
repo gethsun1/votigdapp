@@ -1,7 +1,7 @@
 
-
-```markdown
 # SovereignCast: Secure, Transparent, and Accessible Cross-Chain Voting
+
+---
 
 ![SovereignCast Logo](logo.png)
 
