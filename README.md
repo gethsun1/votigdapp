@@ -52,7 +52,7 @@ Votes are encrypted and securely stored, ensuring voter anonymity and protection
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/sovereigncast.git
+   git clone https://github.com/gethsun1/votingdapp.git
    ```
 2. **Install Dependencies**:
    ```bash
