@@ -2,7 +2,7 @@
 # SovereignCast: Secure, Transparent, and Accessible Cross-Chain Voting
 
 ---
-[![Screenshot-20240713-144334.png](https://i.postimg.cc/hjvCgMrS/Screenshot-20240713-144334.png)](https://postimg.cc/vgR7trkj)
+[![logo](https://i.postimg.cc/hjvCgMrS/Screenshot-20240713-144334.png)](https://postimg.cc/vgR7trkj)
 
 
 ## Vision
